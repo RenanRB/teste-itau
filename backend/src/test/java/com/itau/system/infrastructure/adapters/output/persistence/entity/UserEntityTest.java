@@ -36,4 +36,34 @@ public class UserEntityTest {
         assertEquals(30, retrievedUser.getAge());
         assertEquals("Brasil", retrievedUser.getCountry());
     }
+    
+    @Test
+    void testBuilder() {
+        UserEntity anotherUser = UserEntity.builder()
+            .id(2L)
+            .name("Maria")
+            .surname("Santos")
+            .age(25)
+            .country("Portugal")
+            .build();
+
+        assertEquals(2L, anotherUser.getId());
+        assertEquals("Maria", anotherUser.getName());
+        assertEquals("Santos", anotherUser.getSurname());
+        assertEquals(25, anotherUser.getAge());
+        assertEquals("Portugal", anotherUser.getCountry());
+    }
+
+    @Test
+    void testToString() {
+    	UserEntity userEntity = UserEntity.builder()
+                .id(1L)
+                .name("João")
+                .surname("Silva")
+                .age(30)
+                .country("Brasil")
+                .build();
+        String expectedToString = "UserEntity(id=1, name=João, surname=Silva, age=30, country=Brasil)";
+        assertEquals(expectedToString, userEntity.toString());
+    }
 }
