@@ -23,7 +23,7 @@ public class WebSecurityConfig {
         SavedRequestAwareAuthenticationSuccessHandler successHandler = 
           new SavedRequestAwareAuthenticationSuccessHandler();
         successHandler.setTargetUrlParameter("redirectTo");
-        successHandler.setDefaultTargetUrl(this.adminServer.getContextPath() + "/admin");
+        successHandler.setDefaultTargetUrl(this.adminServer.getContextPath() + "/");
         http.authorizeRequests().anyRequest().permitAll()  
         .and().csrf().disable();
 //        http

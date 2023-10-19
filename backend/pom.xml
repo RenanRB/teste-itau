@@ -17,19 +17,7 @@
 		<java.version>17</java.version>
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
 		<org.modelmapper.version>2.3.9</org.modelmapper.version>
-	</properties>
-	<dependencyManagement>
-    	<dependencies>
-	        <dependency>
-	            <groupId>org.springframework.cloud</groupId>
-	            <artifactId>spring-cloud-dependencies</artifactId>
-	            <version>2021.0.4</version>
-	            <type>pom</type>
-	            <scope>import</scope>
-	        </dependency>
-	    </dependencies>
-	</dependencyManagement>
-	
+	</properties>	
 	
 	<dependencies>
 		<!-- support for data persistence using JPA -->
@@ -99,12 +87,6 @@
 		    <groupId>de.codecentric</groupId>
 		    <artifactId>spring-boot-admin-starter-client</artifactId>
 		    <version>2.7.5</version>
-			<exclusions>
-		        <exclusion>
-		            <groupId>org.springframework.boot</groupId>
-		            <artifactId>spring-boot-starter-logging</artifactId>
-		        </exclusion>
-		    </exclusions>
 		</dependency>
 		
 		<!-- ui to admin login page --> 
@@ -175,14 +157,11 @@
 				<executions>
 	                <execution>
 	                    <goals>
-							<goal>repackage</goal>
 	                        <goal>build-info</goal>
 	                    </goals>
 	                </execution>
 	            </executions>
 				<configuration>
-                    <mainClass>com.itau.system.Application</mainClass>
-                    <addResources>false</addResources>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
