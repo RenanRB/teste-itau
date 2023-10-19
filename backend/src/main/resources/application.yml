@@ -6,16 +6,34 @@ logging:
     com.itau.system: info
 
 spring:
+  #cloud:
+    #discovery:
+      #client:
+        #simple:
+          #instances:
+            #test:
+             # - uri: http://localhost:8080
+               # metadata:
+                 # management.context-path: /actuator
+  application:
+    name: admin-service
   boot:
     admin:
+      url: http://localhost:8080
       context-path: /admin
+      api-path: /api
       routes.endpoints: env, metrics, trace, jolokia, info, configprops
+      discovery:
+        ignored-services: gateway-service
       client:
         username: su
         password: su
       instance.metadata.user:
         name: ${spring.security.user.name}
         password: ${spring.security.user.password}
+  security.user:
+    name: su
+    password: su
   h2.console.enabled: true
   datasource:
     url: jdbc:h2:mem:testdb
@@ -26,6 +44,20 @@ spring:
     show-sql: true
     hibernate:
        ddl-auto: update
+       
+eureka:
+  instance:
+    hostname: localhost
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      startup: ${random.int}    #needed to trigger info and endpoint update after restart
+  client:
+    registryFetchIntervalSeconds: 5
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
 
 management:
   endpoints:
@@ -35,3 +67,5 @@ management:
   endpoint:
     health:
       show-details: always
+  info.env.enabled: true
+  security.enabled: false

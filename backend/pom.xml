@@ -18,8 +18,20 @@
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
 		<org.modelmapper.version>2.3.9</org.modelmapper.version>
 	</properties>
+	<dependencyManagement>
+    	<dependencies>
+	        <dependency>
+	            <groupId>org.springframework.cloud</groupId>
+	            <artifactId>spring-cloud-dependencies</artifactId>
+	            <version>2021.0.4</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	    </dependencies>
+	</dependencyManagement>
+	
+	
 	<dependencies>
-		
 		<!-- support for data persistence using JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,17 +55,6 @@
 		        </exclusion>
 		    </exclusions>
 		</dependency>
-
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-            <exclusions>
-		        <exclusion>
-		            <groupId>org.springframework.boot</groupId>
-		            <artifactId>spring-boot-starter-logging</artifactId>
-		        </exclusion>
-		    </exclusions>
-        </dependency>
 
 		<!-- support for writing unit and integration tests in Spring Boot applications -->
 		<dependency>
@@ -84,7 +85,7 @@
 		<dependency>
 		    <groupId>de.codecentric</groupId>
 		    <artifactId>spring-boot-admin-starter-server</artifactId>
-		    <version>2.4.1</version>
+		    <version>2.7.5</version>
 			<exclusions>
 		        <exclusion>
 		            <groupId>org.springframework.boot</groupId>
@@ -97,7 +98,7 @@
 		<dependency>
 		    <groupId>de.codecentric</groupId>
 		    <artifactId>spring-boot-admin-starter-client</artifactId>
-		    <version>2.4.1</version>
+		    <version>2.7.5</version>
 			<exclusions>
 		        <exclusion>
 		            <groupId>org.springframework.boot</groupId>
@@ -106,7 +107,7 @@
 		    </exclusions>
 		</dependency>
 		
-		<!-- ui to admin login page -->
+		<!-- ui to admin login page --> 
 		<dependency>
 		    <groupId>de.codecentric</groupId>
 		    <artifactId>spring-boot-admin-server-ui-login</artifactId>
@@ -150,13 +151,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- memory database -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
 		<!-- coder help -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -181,11 +175,14 @@
 				<executions>
 	                <execution>
 	                    <goals>
+							<goal>repackage</goal>
 	                        <goal>build-info</goal>
 	                    </goals>
 	                </execution>
 	            </executions>
 				<configuration>
+                    <mainClass>com.itau.system.Application</mainClass>
+                    <addResources>false</addResources>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
