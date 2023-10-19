@@ -14,7 +14,7 @@ import com.itau.system.infrastructure.adapters.output.persistence.UserPersistenc
 import com.itau.system.infrastructure.adapters.output.persistence.mapper.UserMapper;
 import com.itau.system.infrastructure.adapters.output.persistence.repository.UserRepository;
 
-@SpringBootTest
+@SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)
 class BeanConfigurationTest {
 

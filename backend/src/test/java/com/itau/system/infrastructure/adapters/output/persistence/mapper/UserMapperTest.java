@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-@SpringBootTest
+@SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)
 public class UserMapperTest {
 

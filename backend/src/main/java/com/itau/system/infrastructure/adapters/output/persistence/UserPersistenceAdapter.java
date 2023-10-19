@@ -10,8 +10,10 @@ import com.itau.system.infrastructure.adapters.output.persistence.mapper.UserMap
 import com.itau.system.infrastructure.adapters.output.persistence.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
+@Slf4j
 public class UserPersistenceAdapter implements UserOutputPort {
 
     private final UserRepository userRepository;
@@ -27,12 +29,14 @@ public class UserPersistenceAdapter implements UserOutputPort {
         }
 
         User user = userMapper.toUser(userEntity.get());
+    	log.info("get user from db, ID:" + id);
         return Optional.of(user);
     }
 
 	@Override
 	public List<User> getAll() {
 		List<UserEntity> allUsers = userRepository.findAll();
+    	log.info("get all users from db");
 		return userMapper.toUserList(allUsers);
 	}
 
@@ -40,6 +44,7 @@ public class UserPersistenceAdapter implements UserOutputPort {
     public User save(User user) {
         UserEntity userEntity = userMapper.toEntity(user);
         userRepository.save(userEntity);
+    	log.info("new user created in db, ID:" + userEntity.getId());
         return userMapper.toUser(userEntity);
     }
 
@@ -47,11 +52,13 @@ public class UserPersistenceAdapter implements UserOutputPort {
 	public User update(User user) {
 		UserEntity userEntity = userMapper.toEntity(user);
 		userRepository.save(userEntity);
+    	log.info("User updated in db, ID:" + userEntity.getId());
 		return userMapper.toUser(userEntity);
 	}
 
 	@Override
 	public void delete(Long id) {
 		userRepository.deleteById(id);
+    	log.info("Success to delete the user from db, ID:" + id);
 	}
 }

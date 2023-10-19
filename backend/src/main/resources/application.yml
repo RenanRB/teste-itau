@@ -6,6 +6,19 @@ logging:
     com.itau.system: info
 
 spring:
+  boot:
+    admin:
+      context-path: /admin
+      routes.endpoints: env, metrics, trace, jolokia, info, configprops
+      client:
+        username: admin
+        password: admin
+      instance.metadata.user:
+        name: ${spring.security.user.name}
+        password: ${spring.security.user.password}
+  security.user:
+    name: client
+    password: client
   h2.console.enabled: true
   datasource:
     url: jdbc:h2:mem:testdb
@@ -15,4 +28,13 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-       ddl-auto: update  
+       ddl-auto: update
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

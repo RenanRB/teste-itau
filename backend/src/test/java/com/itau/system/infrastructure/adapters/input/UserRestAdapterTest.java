@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import com.itau.system.application.ports.input.UserController;
 import com.itau.system.domain.model.User;
 
-@SpringBootTest
+@SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)
 class UserRestAdapterTest {
 

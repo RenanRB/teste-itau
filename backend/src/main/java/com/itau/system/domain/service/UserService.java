@@ -8,39 +8,42 @@ import com.itau.system.domain.exception.UserNotFoundException;
 import com.itau.system.domain.model.User;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
+@Slf4j
 public class UserService implements UserController {
 
     private final UserOutputPort userOutputPort;
 
 	@Override
 	public User getById(Long id) {
-		System.out.println("get user by ID:");
+		log.info("get user by ID:" + id);
 		return userOutputPort.getById(id).orElseThrow(() -> new UserNotFoundException("user not found with the ID: " + id));
 	}
 
 	@Override
 	public List<User> getAll() {
-		System.out.println("get all users");
+		log.info("get all users");
 		return userOutputPort.getAll();
 	}
 
 	@Override
 	public User create(User user) {
-		System.out.println("New user created with the ID: " + user.getId());
-        return userOutputPort.save(user);
+		log.info("Requesting to create a new user");
+		userOutputPort.save(user);
+        return user;
 	}
 
 	@Override
 	public User update(User user) {
-		System.out.println("New user created with the ID: " + user.getId());
+		log.info("New user created with the ID: " + user.getId());
 		return userOutputPort.update(user);
 	}
 
 	@Override
 	public void delete(Long id) {
-		System.out.println("deleted user ID: " + id);
+		log.info("deleted user ID: " + id);
 		userOutputPort.delete(id);
 	}
 }
