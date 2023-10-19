@@ -37,6 +37,8 @@ spring:
     show-sql: true
     hibernate:
        ddl-auto: update
+       
+logging.file.name: logs/spring-boot-logger-log4j2.log
 
 management:
   endpoints:
@@ -44,5 +46,5 @@ management:
       exposure:
         include: '*'
   endpoint:
-    health:
-      show-details: always
+    health.show-details: always
+    logfile.external-file=: logs/spring-boot-logger-log4j2.log
