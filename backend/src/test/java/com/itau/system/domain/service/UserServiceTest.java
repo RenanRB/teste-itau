@@ -17,7 +17,7 @@ import com.itau.system.application.ports.output.UserOutputPort;
 import com.itau.system.domain.exception.UserNotFoundException;
 import com.itau.system.domain.model.User;
 
-@SpringBootTest
+@SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 

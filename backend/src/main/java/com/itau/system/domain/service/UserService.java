@@ -31,8 +31,7 @@ public class UserService implements UserController {
 	@Override
 	public User create(User user) {
 		log.info("Requesting to create a new user");
-		userOutputPort.save(user);
-        return user;
+        return userOutputPort.save(user);
 	}
 
 	@Override
