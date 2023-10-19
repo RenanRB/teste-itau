@@ -14,7 +14,7 @@
 	<name>System</name>
 	<description>System</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
 		<org.modelmapper.version>2.3.9</org.modelmapper.version>
 	</properties>
