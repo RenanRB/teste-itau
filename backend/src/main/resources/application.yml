@@ -11,14 +11,11 @@ spring:
       context-path: /admin
       routes.endpoints: env, metrics, trace, jolokia, info, configprops
       client:
-        username: admin
-        password: admin
+        username: su
+        password: su
       instance.metadata.user:
         name: ${spring.security.user.name}
         password: ${spring.security.user.password}
-  security.user:
-    name: client
-    password: client
   h2.console.enabled: true
   datasource:
     url: jdbc:h2:mem:testdb
