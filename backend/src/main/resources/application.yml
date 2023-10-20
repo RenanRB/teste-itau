@@ -4,11 +4,12 @@ server:
 logging:
   level:
     com.itau.system: info
+  file.name: logs/spring-boot-logger-log4j2.log
 
 spring:
   application:
     name: system
-
+  
   boot:
     admin:
       api-path: /api
@@ -38,7 +39,8 @@ spring:
     hibernate:
        ddl-auto: update
        
-logging.file.name: logs/spring-boot-logger-log4j2.log
+topic:
+  name: user.email
 
 management:
   endpoints:

@@ -18,7 +18,7 @@ public class UserService implements UserController {
 
 	@Override
 	public User getById(Long id) {
-		log.info("get user by ID:" + id);
+		log.info("get user by ID: {}", id);
 		return userOutputPort.getById(id).orElseThrow(() -> new UserNotFoundException("user not found with the ID: " + id));
 	}
 
@@ -36,13 +36,13 @@ public class UserService implements UserController {
 
 	@Override
 	public User update(User user) {
-		log.info("New user created with the ID: " + user.getId());
+		log.info("New user created with the ID: {}", user.getId());
 		return userOutputPort.update(user);
 	}
 
 	@Override
 	public void delete(Long id) {
-		log.info("deleted user ID: " + id);
+		log.info("deleted user ID: {}", id);
 		userOutputPort.delete(id);
 	}
 }

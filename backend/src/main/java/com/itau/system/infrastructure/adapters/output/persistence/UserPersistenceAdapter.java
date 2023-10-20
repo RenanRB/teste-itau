@@ -29,7 +29,7 @@ public class UserPersistenceAdapter implements UserOutputPort {
         }
 
         User user = userMapper.toUser(userEntity.get());
-    	log.info("get user from db, ID:" + id);
+    	log.info("get user from db, ID: {}", id);
         return Optional.of(user);
     }
 
@@ -44,7 +44,7 @@ public class UserPersistenceAdapter implements UserOutputPort {
     public User save(User user) {
         UserEntity userEntity = userMapper.toEntity(user);
         userRepository.save(userEntity);
-    	log.info("new user created in db, ID:" + userEntity.getId());
+    	log.info("new user created in db, ID: {}", userEntity.getId());
         return userMapper.toUser(userEntity);
     }
 
@@ -52,13 +52,13 @@ public class UserPersistenceAdapter implements UserOutputPort {
 	public User update(User user) {
 		UserEntity userEntity = userMapper.toEntity(user);
 		userRepository.save(userEntity);
-    	log.info("User updated in db, ID:" + userEntity.getId());
+    	log.info("User updated in db, ID: {}", userEntity.getId());
 		return userMapper.toUser(userEntity);
 	}
 
 	@Override
 	public void delete(Long id) {
 		userRepository.deleteById(id);
-    	log.info("Success to delete the user from db, ID:" + id);
+    	log.info("Success to delete the user from db, ID:{}", id);
 	}
 }

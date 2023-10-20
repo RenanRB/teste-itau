@@ -16,8 +16,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.itau.system.application.ports.input.UserController;
 import com.itau.system.domain.model.User;
+import com.itau.system.infrastructure.adapters.config.ProducerConfiguration;
 
 @SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)
@@ -25,12 +27,15 @@ class UserRestAdapterTest {
 
     @Mock
     private UserController userController;
+    
+    @Mock
+    private ProducerConfiguration producer;
 
     private UserRestAdapter userRestAdapter;
 
     @BeforeEach
     void setUp() {
-        userRestAdapter = new UserRestAdapter(userController, new ModelMapper());
+        userRestAdapter = new UserRestAdapter(userController, new ModelMapper(), producer);
     }
 
     @Test
@@ -60,7 +65,7 @@ class UserRestAdapterTest {
     }
 
     @Test
-    void createUser_ShouldReturnCreatedUserWithStatusCreated() {
+    void createUser_ShouldReturnCreatedUserWithStatusCreated() throws JsonProcessingException {
         User userToCreate = new User(null, "João", "Silva", 30, "Brasil");
         User expectedUser = new User(1L, "João", "Silva", 30, "Brasil");
         Mockito.when(userController.create(userToCreate)).thenReturn(expectedUser);
