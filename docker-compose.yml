@@ -67,3 +67,10 @@ services:
     depends_on:
       - "kafka"
       - "backend"
+
+  angular:
+    build: ui
+    ports:
+      - 4200:80
+    networks:
+    - kafka-net
