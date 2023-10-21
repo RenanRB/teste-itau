@@ -1,4 +1,4 @@
-package com.itau.system.infrastructure.adapters.config;
+package com.itau.system.infrastructure.kafka.producer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

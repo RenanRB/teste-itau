@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.itau.system.application.ports.input.UserController;
 import com.itau.system.domain.model.User;
-import com.itau.system.infrastructure.adapters.config.ProducerConfiguration;
+import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
 
 @SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)

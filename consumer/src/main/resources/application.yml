@@ -9,7 +9,11 @@ logging:
 spring:
   kafka:
     consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: kafka:29092, localhost:9092
       group-id: "default"
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
   mail:
     host: smtp.gmail.com
     port: 587

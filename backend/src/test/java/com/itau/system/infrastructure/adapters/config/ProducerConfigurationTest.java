@@ -3,6 +3,8 @@ package com.itau.system.infrastructure.adapters.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itau.system.domain.model.User;
+import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

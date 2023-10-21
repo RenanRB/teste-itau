@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.itau.system.application.ports.input.UserController;
 import com.itau.system.domain.model.User;
-import com.itau.system.infrastructure.adapters.config.ProducerConfiguration;
+import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

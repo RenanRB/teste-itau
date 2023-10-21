@@ -7,9 +7,12 @@ logging:
   file.name: logs/spring-boot-logger-log4j2.log
 
 spring:
-  application:
-    name: system
-  
+  kafka:
+    producer:
+      acks: -1
+      bootstrap-servers: kafka:29092, localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   boot:
     admin:
       api-path: /api
