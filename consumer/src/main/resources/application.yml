@@ -7,7 +7,7 @@ logging:
   file.name: logs/spring-boot-logger-log4j2.log
 
 spring:
-  boot.admin.client.url: http://localhost:8080
+  boot.admin.client.url: http://backend:8080, http://localhost:8080
   boot.admin.client.instance.name: 'Consumer'
   kafka:
     consumer:
