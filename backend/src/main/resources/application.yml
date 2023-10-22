@@ -23,6 +23,7 @@ spring:
         username: su
         password: su
         url: http://localhost:8080
+        instance.name: 'Backend'
       instance.metadata.user:
         name: ${spring.security.user.name}
         password: ${spring.security.user.password}

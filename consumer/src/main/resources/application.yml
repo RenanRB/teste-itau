@@ -8,6 +8,7 @@ logging:
 
 spring:
   boot.admin.client.url: http://localhost:8080
+  boot.admin.client.instance.name: 'Consumer'
   kafka:
     consumer:
       auto-offset-reset: earliest
