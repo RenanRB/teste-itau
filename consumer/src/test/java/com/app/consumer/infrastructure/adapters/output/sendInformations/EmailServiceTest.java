@@ -1,4 +1,4 @@
-package com.app.consumer.service;
+package com.app.consumer.infrastructure.adapters.output.sendInformations;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.ArgumentMatchers.any;

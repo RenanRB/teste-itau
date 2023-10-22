@@ -8,6 +8,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
+import com.app.consumer.infrastructure.adapters.config.BeanConfiguration;
+
 @ExtendWith(MockitoExtension.class)
 public class ConfigTest {
 
@@ -16,7 +18,7 @@ public class ConfigTest {
 
     @Test
     public void testModelMapperBean() {
-        Config config = new Config();
+        BeanConfiguration config = new BeanConfiguration();
 
         ModelMapper modelMapper = config.modelMapper();
 

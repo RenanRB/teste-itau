@@ -32,4 +32,4 @@ topic:
   
 consumer:
   timer: 2
-  time-unit: MINUTES
+  time-unit: SECONDS
