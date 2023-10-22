@@ -35,7 +35,7 @@ System developed in Spring Boot with a hexagonal architecture for user managemen
 
 ## Installation
 
-If you prefer to run them separately, you can follow this tutorial, but I recommend using the [Docker](#docker) part."
+If you prefer to run them separately, you can follow this tutorial, but I recommend using the [Docker](#docker) part.
 
 #### Zookeeper and kafka (Mandatory for spring applications)
 ```sh
