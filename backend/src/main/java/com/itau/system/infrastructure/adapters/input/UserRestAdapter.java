@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.itau.system.application.ports.input.UserController;
 import com.itau.system.domain.model.User;
-import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 public class UserRestAdapter {
     private final UserController userController;
     private final ModelMapper mapper;
-    private final ProducerConfiguration producer;
-
 
     @GetMapping(value = "/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
@@ -53,7 +50,6 @@ public class UserRestAdapter {
     	log.info("new api request to create a new user");
         User user = mapper.map(userToCreate, User.class);
         user = userController.create(user);
-        producer.sendMessage(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 

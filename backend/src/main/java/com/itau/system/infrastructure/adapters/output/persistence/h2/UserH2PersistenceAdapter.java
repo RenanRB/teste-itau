@@ -10,6 +10,7 @@ import com.itau.system.domain.model.User;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.entity.UserH2Entity;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.mapper.UserMapper;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.repository.UserH2Repository;
+import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 public class UserH2PersistenceAdapter implements UserRepository {
 
     private final UserH2Repository userRepository;
-
     private final UserMapper userMapper;
+    private final ProducerConfiguration producer;
 
     @Override
     public Optional<User> getById(Long id) {
@@ -48,6 +49,7 @@ public class UserH2PersistenceAdapter implements UserRepository {
         UserH2Entity userEntity = userMapper.toEntity(user);
         userRepository.save(userEntity);
     	log.info("new user created in db, ID: {}", userEntity.getId());
+        producer.sendMessage(user);
         return userMapper.toUser(userEntity);
     }
 

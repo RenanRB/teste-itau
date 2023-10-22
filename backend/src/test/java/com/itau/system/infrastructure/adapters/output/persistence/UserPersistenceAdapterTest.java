@@ -12,6 +12,7 @@ import com.itau.system.infrastructure.adapters.output.persistence.h2.UserH2Persi
 import com.itau.system.infrastructure.adapters.output.persistence.h2.entity.UserH2Entity;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.mapper.UserMapper;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.repository.UserH2Repository;
+import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
@@ -28,6 +29,9 @@ public class UserPersistenceAdapterTest {
 
     @Mock
     private UserMapper userMapper;
+    
+    @Mock
+    private ProducerConfiguration producer;
 
     @Test
     public void testGetUserById_WhenUserExists() {

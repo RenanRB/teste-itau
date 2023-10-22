@@ -8,6 +8,7 @@ import com.itau.system.domain.service.UserService;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.UserH2PersistenceAdapter;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.mapper.UserMapper;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.repository.UserH2Repository;
+import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
 
 @Configuration
 public class BeanConfiguration {
@@ -23,8 +24,8 @@ public class BeanConfiguration {
     }
     
     @Bean
-    public UserH2PersistenceAdapter userPersistenceAdapter(UserH2Repository userRepository, UserMapper userMapper) {
-        return new UserH2PersistenceAdapter(userRepository, userMapper);
+    public UserH2PersistenceAdapter userPersistenceAdapter(UserH2Repository userRepository, UserMapper userMapper, ProducerConfiguration producer) {
+        return new UserH2PersistenceAdapter(userRepository, userMapper, producer);
     }
 
     @Bean

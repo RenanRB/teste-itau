@@ -26,12 +26,18 @@ public class ProducerConfiguration {
         this.objectMapper = objectMapper;
     }
 
-    public String sendMessage(User user) throws JsonProcessingException {
-        String userAsMessage = objectMapper.writeValueAsString(user);
-        kafkaTemplate.send(userEmailTopic, userAsMessage);
+    public String sendMessage(User user) {
+        String userAsMessage;
+		try {
+			userAsMessage = objectMapper.writeValueAsString(user);
+	        kafkaTemplate.send(userEmailTopic, userAsMessage);
+	        log.info("user produced {}", userAsMessage);
 
-        log.info("user produced {}", userAsMessage);
-
-        return "message sent";
+	        return "message sent";
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			log.error("Erro when trying to send the message {}", e.getMessage());
+			return "error to send message";
+		}
     }
 }

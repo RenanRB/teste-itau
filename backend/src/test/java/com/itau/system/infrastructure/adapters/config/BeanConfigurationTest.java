@@ -13,6 +13,7 @@ import com.itau.system.domain.service.UserService;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.UserH2PersistenceAdapter;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.mapper.UserMapper;
 import com.itau.system.infrastructure.adapters.output.persistence.h2.repository.UserH2Repository;
+import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
 
 @SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)
@@ -41,8 +42,9 @@ class BeanConfigurationTest {
         BeanConfiguration beanConfiguration = new BeanConfiguration();
         UserH2Repository userRepository = Mockito.mock(UserH2Repository.class);
         UserMapper userMapper = Mockito.mock(UserMapper.class);
+        ProducerConfiguration producer = Mockito.mock(ProducerConfiguration.class);
 
-        UserH2PersistenceAdapter userPersistenceAdapter = beanConfiguration.userPersistenceAdapter(userRepository, userMapper);
+        UserH2PersistenceAdapter userPersistenceAdapter = beanConfiguration.userPersistenceAdapter(userRepository, userMapper, producer);
 
         assertNotNull(userPersistenceAdapter);
     }

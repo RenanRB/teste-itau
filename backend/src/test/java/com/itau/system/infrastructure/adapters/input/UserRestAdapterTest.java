@@ -19,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.itau.system.application.ports.input.UserController;
 import com.itau.system.domain.model.User;
-import com.itau.system.infrastructure.kafka.producer.ProducerConfiguration;
 
 @SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)
@@ -27,15 +26,12 @@ class UserRestAdapterTest {
 
     @Mock
     private UserController userController;
-    
-    @Mock
-    private ProducerConfiguration producer;
 
     private UserRestAdapter userRestAdapter;
 
     @BeforeEach
     void setUp() {
-        userRestAdapter = new UserRestAdapter(userController, new ModelMapper(), producer);
+        userRestAdapter = new UserRestAdapter(userController, new ModelMapper());
     }
 
     @Test
