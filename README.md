@@ -87,9 +87,9 @@ docker compose up
 
 In this list, you will have all the available services
 
--Angular UI <http://localhost:4200/>
--Spring boot admin <http://host.docker.internal:8080/>
--Kafka message list <http://localhost:9000/>
+- Angular UI <http://localhost:4200/>
+- Spring boot admin <http://host.docker.internal:8080/>
+- Kafka message list <http://localhost:9000/>
 
 ## License
 
