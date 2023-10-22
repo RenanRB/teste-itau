@@ -1,4 +1,4 @@
-package com.itau.system.infrastructure.adapters.output.persistence.entity;
+package com.itau.system.infrastructure.adapters.output.persistence.h2.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Builder
 @ToString
-public class UserEntity {
+public class UserH2Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

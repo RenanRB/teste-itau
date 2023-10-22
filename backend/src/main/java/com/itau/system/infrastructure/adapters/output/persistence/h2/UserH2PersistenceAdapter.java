@@ -1,28 +1,31 @@
-package com.itau.system.infrastructure.adapters.output.persistence;
+package com.itau.system.infrastructure.adapters.output.persistence.h2;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.itau.system.application.ports.output.UserOutputPort;
+import org.springframework.context.annotation.Primary;
+
+import com.itau.system.application.ports.output.UserRepository;
 import com.itau.system.domain.model.User;
-import com.itau.system.infrastructure.adapters.output.persistence.entity.UserEntity;
-import com.itau.system.infrastructure.adapters.output.persistence.mapper.UserMapper;
-import com.itau.system.infrastructure.adapters.output.persistence.repository.UserRepository;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.entity.UserH2Entity;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.mapper.UserMapper;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.repository.UserH2Repository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Slf4j
-public class UserPersistenceAdapter implements UserOutputPort {
+@Primary
+public class UserH2PersistenceAdapter implements UserRepository {
 
-    private final UserRepository userRepository;
+    private final UserH2Repository userRepository;
 
     private final UserMapper userMapper;
 
     @Override
     public Optional<User> getById(Long id) {
-        Optional<UserEntity> userEntity = userRepository.findById(id);
+        Optional<UserH2Entity> userEntity = userRepository.findById(id);
 
         if(userEntity.isEmpty()) {
             return Optional.empty();
@@ -35,14 +38,14 @@ public class UserPersistenceAdapter implements UserOutputPort {
 
 	@Override
 	public List<User> getAll() {
-		List<UserEntity> allUsers = userRepository.findAll();
+		List<UserH2Entity> allUsers = userRepository.findAll();
     	log.info("get all users from db");
 		return userMapper.toUserList(allUsers);
 	}
 
     @Override
     public User save(User user) {
-        UserEntity userEntity = userMapper.toEntity(user);
+        UserH2Entity userEntity = userMapper.toEntity(user);
         userRepository.save(userEntity);
     	log.info("new user created in db, ID: {}", userEntity.getId());
         return userMapper.toUser(userEntity);
@@ -50,7 +53,7 @@ public class UserPersistenceAdapter implements UserOutputPort {
 
 	@Override
 	public User update(User user) {
-		UserEntity userEntity = userMapper.toEntity(user);
+		UserH2Entity userEntity = userMapper.toEntity(user);
 		userRepository.save(userEntity);
     	log.info("User updated in db, ID: {}", userEntity.getId());
 		return userMapper.toUser(userEntity);

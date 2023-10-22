@@ -9,7 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.itau.system.domain.model.User;
-import com.itau.system.infrastructure.adapters.output.persistence.entity.UserEntity;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.entity.UserH2Entity;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.mapper.UserMapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -28,9 +29,9 @@ public class UserMapperTest {
 
     @Test
     void toUserList_ShouldMapUserEntityListToUserList() {
-        List<UserEntity> entityList = Arrays.asList(
-            new UserEntity(1L, "João", "Silva", 30, "Brasil"),
-            new UserEntity(2L, "Maria", "Santos", 25, "Brasil")
+        List<UserH2Entity> entityList = Arrays.asList(
+            new UserH2Entity(1L, "João", "Silva", 30, "Brasil"),
+            new UserH2Entity(2L, "Maria", "Santos", 25, "Brasil")
         );
 
         when(modelMapper.map(entityList.get(0), User.class))
@@ -60,12 +61,12 @@ public class UserMapperTest {
             new User(2L, "Maria", "Santos", 25, "Brasil")
         );
 
-        when(modelMapper.map(userList.get(0), UserEntity.class))
-            .thenReturn(new UserEntity(1L, "João", "Silva", 30, "Brasil"));
-        when(modelMapper.map(userList.get(1), UserEntity.class))
-            .thenReturn(new UserEntity(2L, "Maria", "Santos", 25, "Brasil"));
+        when(modelMapper.map(userList.get(0), UserH2Entity.class))
+            .thenReturn(new UserH2Entity(1L, "João", "Silva", 30, "Brasil"));
+        when(modelMapper.map(userList.get(1), UserH2Entity.class))
+            .thenReturn(new UserH2Entity(2L, "Maria", "Santos", 25, "Brasil"));
 
-        List<UserEntity> entityList = userMapper.toEntityList(userList);
+        List<UserH2Entity> entityList = userMapper.toEntityList(userList);
 
         assertEquals(2, entityList.size());
         assertEquals(1L, entityList.get(0).getId());

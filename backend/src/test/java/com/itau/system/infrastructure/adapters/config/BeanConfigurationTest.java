@@ -10,9 +10,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.itau.system.domain.service.UserService;
-import com.itau.system.infrastructure.adapters.output.persistence.UserPersistenceAdapter;
-import com.itau.system.infrastructure.adapters.output.persistence.mapper.UserMapper;
-import com.itau.system.infrastructure.adapters.output.persistence.repository.UserRepository;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.UserH2PersistenceAdapter;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.mapper.UserMapper;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.repository.UserH2Repository;
 
 @SpringBootTest(properties = "spring.session.stateless=true")
 @ExtendWith(MockitoExtension.class)
@@ -39,10 +39,10 @@ class BeanConfigurationTest {
     @Test
     void userPersistenceAdapter_ShouldReturnUserPersistenceAdapter() {
         BeanConfiguration beanConfiguration = new BeanConfiguration();
-        UserRepository userRepository = Mockito.mock(UserRepository.class);
+        UserH2Repository userRepository = Mockito.mock(UserH2Repository.class);
         UserMapper userMapper = Mockito.mock(UserMapper.class);
 
-        UserPersistenceAdapter userPersistenceAdapter = beanConfiguration.userPersistenceAdapter(userRepository, userMapper);
+        UserH2PersistenceAdapter userPersistenceAdapter = beanConfiguration.userPersistenceAdapter(userRepository, userMapper);
 
         assertNotNull(userPersistenceAdapter);
     }
@@ -50,7 +50,7 @@ class BeanConfigurationTest {
     @Test
     void userService_ShouldReturnUserService() {
         BeanConfiguration beanConfiguration = new BeanConfiguration();
-        UserPersistenceAdapter userPersistenceAdapter = Mockito.mock(UserPersistenceAdapter.class);
+        UserH2PersistenceAdapter userPersistenceAdapter = Mockito.mock(UserH2PersistenceAdapter.class);
 
         UserService userService = beanConfiguration.userService(userPersistenceAdapter);
 

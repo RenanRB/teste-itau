@@ -13,7 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.itau.system.application.ports.output.UserOutputPort;
+import com.itau.system.application.ports.output.UserRepository;
 import com.itau.system.domain.exception.UserNotFoundException;
 import com.itau.system.domain.model.User;
 
@@ -22,20 +22,20 @@ import com.itau.system.domain.model.User;
 class UserServiceTest {
 
     @Mock
-    private UserOutputPort userOutputPort;
+    private UserRepository userRepository;
 
     private UserService userService;
 
     @BeforeEach
     void setUp() {
-        userService = new UserService(userOutputPort);
+        userService = new UserService(userRepository);
     }
 
     @Test
     void getById_UserExists_ShouldReturnUser() {
         Long userId = 1L;
         User expectedUser = new User(userId, "João", "Silva", 30, "Brasil");
-        Mockito.when(userOutputPort.getById(userId)).thenReturn(Optional.of(expectedUser));
+        Mockito.when(userRepository.getById(userId)).thenReturn(Optional.of(expectedUser));
 
         User result = userService.getById(userId);
 
@@ -45,7 +45,7 @@ class UserServiceTest {
     @Test
     void getById_UserNotFound_ShouldThrowUserNotFoundException() {
         Long userId = 1L;
-        Mockito.when(userOutputPort.getById(userId)).thenReturn(Optional.empty());
+        Mockito.when(userRepository.getById(userId)).thenReturn(Optional.empty());
 
         assertThrows(UserNotFoundException.class, () -> userService.getById(userId));
     }
@@ -56,7 +56,7 @@ class UserServiceTest {
             new User(1L, "João", "Silva", 30, "Brasil"),
             new User(2L, "Maria", "Santos", 25, "Brasil")
         );
-        Mockito.when(userOutputPort.getAll()).thenReturn(expectedUsers);
+        Mockito.when(userRepository.getAll()).thenReturn(expectedUsers);
 
         List<User> result = userService.getAll();
 
@@ -67,7 +67,7 @@ class UserServiceTest {
     void create_ShouldReturnCreatedUser() {
         User userToCreate = new User(null, "João", "Silva", 30, "Brasil");
         User expectedUser = new User(1L, "João", "Silva", 30, "Brasil");
-        Mockito.when(userOutputPort.save(userToCreate)).thenReturn(expectedUser);
+        Mockito.when(userRepository.save(userToCreate)).thenReturn(expectedUser);
 
         User result = userService.create(userToCreate);
 
@@ -78,7 +78,7 @@ class UserServiceTest {
     void update_ShouldReturnUpdatedUser() {
         User userToUpdate = new User(1L, "João", "Silva", 30, "Brasil");
         User expectedUser = new User(1L, "João", "Silva", 30, "Brasil");
-        Mockito.when(userOutputPort.update(userToUpdate)).thenReturn(expectedUser);
+        Mockito.when(userRepository.update(userToUpdate)).thenReturn(expectedUser);
 
         User result = userService.update(userToUpdate);
 
@@ -86,11 +86,11 @@ class UserServiceTest {
     }
 
     @Test
-    void delete_ShouldCallUserOutputPortDelete() {
+    void delete_ShouldCalluserRepositoryDelete() {
         Long userId = 1L;
 
         userService.delete(userId);
 
-        Mockito.verify(userOutputPort).delete(userId);
+        Mockito.verify(userRepository).delete(userId);
     }
 }

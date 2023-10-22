@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.itau.system.domain.model.User;
 
-public interface UserOutputPort {
+public interface UserRepository {
 
     Optional<User> getById(Long id);
 

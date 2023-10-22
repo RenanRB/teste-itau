@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.itau.system.domain.service.UserService;
-import com.itau.system.infrastructure.adapters.output.persistence.UserPersistenceAdapter;
-import com.itau.system.infrastructure.adapters.output.persistence.mapper.UserMapper;
-import com.itau.system.infrastructure.adapters.output.persistence.repository.UserRepository;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.UserH2PersistenceAdapter;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.mapper.UserMapper;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.repository.UserH2Repository;
 
 @Configuration
 public class BeanConfiguration {
@@ -23,12 +23,12 @@ public class BeanConfiguration {
     }
     
     @Bean
-    public UserPersistenceAdapter userPersistenceAdapter(UserRepository userRepository, UserMapper userMapper) {
-        return new UserPersistenceAdapter(userRepository, userMapper);
+    public UserH2PersistenceAdapter userPersistenceAdapter(UserH2Repository userRepository, UserMapper userMapper) {
+        return new UserH2PersistenceAdapter(userRepository, userMapper);
     }
 
     @Bean
-    public UserService userService(UserPersistenceAdapter userPersistenceAdapter) {
+    public UserService userService(UserH2PersistenceAdapter userPersistenceAdapter) {
         return new UserService(userPersistenceAdapter);
     }
 }

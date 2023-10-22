@@ -8,17 +8,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import com.itau.system.infrastructure.adapters.output.persistence.repository.UserRepository;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.entity.UserH2Entity;
+import com.itau.system.infrastructure.adapters.output.persistence.h2.repository.UserH2Repository;
 
 @DataJpaTest
 public class UserEntityTest {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserH2Repository userRepository;
 
     @Test
     public void testSaveAndRetrieveUserEntity() {
-        UserEntity userEntity = new UserEntity();
+        UserH2Entity userEntity = new UserH2Entity();
         userEntity.setName("João");
         userEntity.setSurname("Silva");
         userEntity.setAge(30);
@@ -26,11 +27,11 @@ public class UserEntityTest {
 
         userRepository.save(userEntity);
 
-        Optional<UserEntity> retrievedUserEntity = userRepository.findById(userEntity.getId());
+        Optional<UserH2Entity> retrievedUserEntity = userRepository.findById(userEntity.getId());
 
         assertTrue(retrievedUserEntity.isPresent());
 
-        UserEntity retrievedUser = retrievedUserEntity.get();
+        UserH2Entity retrievedUser = retrievedUserEntity.get();
         assertEquals("João", retrievedUser.getName());
         assertEquals("Silva", retrievedUser.getSurname());
         assertEquals(30, retrievedUser.getAge());
@@ -39,7 +40,7 @@ public class UserEntityTest {
     
     @Test
     void testBuilder() {
-        UserEntity anotherUser = UserEntity.builder()
+        UserH2Entity anotherUser = UserH2Entity.builder()
             .id(2L)
             .name("Maria")
             .surname("Santos")
@@ -56,14 +57,14 @@ public class UserEntityTest {
 
     @Test
     void testToString() {
-    	UserEntity userEntity = UserEntity.builder()
+    	UserH2Entity userEntity = UserH2Entity.builder()
                 .id(1L)
                 .name("João")
                 .surname("Silva")
                 .age(30)
                 .country("Brasil")
                 .build();
-        String expectedToString = "UserEntity(id=1, name=João, surname=Silva, age=30, country=Brasil)";
+        String expectedToString = "UserH2Entity(id=1, name=João, surname=Silva, age=30, country=Brasil)";
         assertEquals(expectedToString, userEntity.toString());
     }
 }
