@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,7 +58,7 @@ public class UserRestAdapter {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = "/users")
+    @PutMapping(value = "/users")
     public ResponseEntity<User> updateUser(@RequestBody User userToUpdate){
     	log.info("new api request to update user by ID: {}", userToUpdate.getId());
         User user = mapper.map(userToUpdate, User.class);
