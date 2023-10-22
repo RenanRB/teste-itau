@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>{{user.id ? 'Update the user ID: ' + user.id : 'Create a new user'}}</h1>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field>
+    <mat-label>Name *</mat-label>
+    <input matInput [(ngModel)]="user.name" cdkFocusInitial>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Surname *</mat-label>
+    <input matInput [(ngModel)]="user.surname">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Age *</mat-label>
+    <input matInput [(ngModel)]="user.age" type="number" min="1" max="120" step="1">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Country *</mat-label>
+    <mat-select [(ngModel)]="user.country" name="country">
+        <mat-option value="Brasil">Brasil</mat-option>
+        <mat-option value="Portugal">Portugal</mat-option>
+        <mat-option value="Espanha">Espanha</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="user" [disabled]="!user.name || !user.surname || !user.age || !user.country">Save</button>
+</mat-dialog-actions>

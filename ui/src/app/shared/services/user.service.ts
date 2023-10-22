@@ -14,8 +14,24 @@ export class UserService {
   constructor(private apiService: ApiService) {
   }
 
-  public save(user: User): Observable<any> {
-    return this.apiService.post<any>(this.pathBase, user);
+  public getById(id: number): Observable<User> {
+    return this.apiService.get(this.pathBase + id);
+  }
+
+  public getAll(): Observable<Array<User>> {
+    return this.apiService.get(this.pathBase);
+  }
+
+  public save(user: User): Observable<User> {
+    return this.apiService.post(this.pathBase, user);
+  }
+
+  public update(user: User): Observable<User> {
+    return this.apiService.put(this.pathBase, user);
+  }
+
+  public delete(id: number): Observable<void> {
+    return this.apiService.delete(this.pathBase + id);
   }
 
 }
