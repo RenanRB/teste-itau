@@ -33,6 +33,16 @@ System developed in Spring Boot with a hexagonal architecture for user managemen
 ![spring backend tests](images/testsBackend.png)
 ![spring consumer tests](images/testsConsumer.png)
 
+## Configurations
+
+Within the file ```consumer/src/main/resources/application.yml```, you will find the properties related to email sending. If you wish to modify them, they are as follows:
+
+- ```spring > mail > username```
+- ```spring > mail > password```
+- ```spring > mail > sendTo```
+- ```consumer > timer```
+- ```consumer > time-unit```
+
 ## Installation
 
 If you prefer to run them separately, you can follow this tutorial, but I recommend using the [Docker](#docker) part.
