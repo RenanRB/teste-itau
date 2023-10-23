@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { User } from "src/app/core/services/model/user.model";
+import { ApiService } from "src/app/core/services/api.service";
+import { User } from "src/app/core/model/user.model";
 
 @Injectable({
     providedIn: 'root',
@@ -9,29 +9,29 @@ import { User } from "src/app/core/services/model/user.model";
 export class UserService {
 
 
-  private readonly pathBase = 'http://localhost:8000/users/';
+  private readonly pathBase = 'users/';
 
-  constructor(private http: HttpClient) {
+  constructor(private apiService: ApiService) {
   }
 
   public getById(id: number): Observable<User> {
-    return this.http.get<User>(this.pathBase + id);
+    return this.apiService.get(this.pathBase + id);
   }
 
   public getAll(): Observable<Array<User>> {
-    return this.http.get<Array<User>>(this.pathBase);
+    return this.apiService.get(this.pathBase);
   }
 
   public save(user: User): Observable<User> {
-    return this.http.post<User>(this.pathBase, user);
+    return this.apiService.post(this.pathBase, user);
   }
 
   public update(user: User): Observable<User> {
-    return this.http.put<User>(this.pathBase, user);
+    return this.apiService.put(this.pathBase, user);
   }
 
   public delete(id: number): Observable<void> {
-    return this.http.delete<void>(this.pathBase + id);
+    return this.apiService.delete(this.pathBase + id);
   }
 
 }

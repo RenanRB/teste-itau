@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoaderService } from './core/services/loader.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ui';
+  isLoading: Subject<boolean> = this.loader.isLoading;
+
+  constructor(private loader: LoaderService) {}
+
 }

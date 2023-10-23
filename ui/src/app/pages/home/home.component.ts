@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { User } from 'src/app/core/services/model/user.model';
+import { User } from 'src/app/core/model/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({

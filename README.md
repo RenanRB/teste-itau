@@ -81,11 +81,6 @@ npm i
 npm start
 ```
 
-For production environments...
-
-```sh
-npm install --production
-NODE_ENV=production node app
 ```
 ## Docker
 
