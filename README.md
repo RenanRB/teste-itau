@@ -16,6 +16,7 @@ System developed in Spring Boot with a hexagonal architecture for user managemen
 
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [kafka](https://kafka.apache.org/)
+- [Kong Gateway](https://konghq.com/products/kong-gateway)
 - [Spring Boot Admin](https://docs.spring-boot-admin.com/)
 - [Swagger](https://swagger.io/)
 - [H2 Database](https://www.h2database.com/)
