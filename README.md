@@ -17,6 +17,7 @@ System developed in Spring Boot with a hexagonal architecture for user managemen
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [kafka](https://kafka.apache.org/)
 - [Spring Boot Admin](https://docs.spring-boot-admin.com/)
+- [Swagger](https://swagger.io/)
 - [H2 Database](https://www.h2database.com/)
 - [Lombok](https://projectlombok.org/)
 - [ModelMapper](https://modelmapper.org/)
@@ -98,7 +99,8 @@ docker compose up
 In this list, you will have all the available services
 
 - Angular UI <http://localhost:4200/>
-- Spring boot admin <http://host.docker.internal:8080/>
+- Spring boot admin <http://localhost:8080/>
+- Swagger <http://localhost:8080/swagger-ui/index.html#/>
 - Kafka message list <http://localhost:9000/>
 
 ## License

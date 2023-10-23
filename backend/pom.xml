@@ -171,6 +171,12 @@
 			<artifactId>modelmapper</artifactId>
 			<version>${org.modelmapper.version}</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-ui</artifactId>
+		    <version>1.6.12</version>
+		</dependency>
 
 	</dependencies>
 
@@ -210,10 +216,10 @@
 	                    <phase>test</phase>
 	                    <goals>
 	                        <goal>report</goal>
-	                    </goals>
-	                </execution>
-	            </executions>
-        	</plugin>
+	                    			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
 		</plugins>
 	</build>
 
