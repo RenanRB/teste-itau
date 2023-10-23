@@ -11,7 +11,7 @@ export class ApiService {
 
   private static readonly DATE_FORMAT = 'YYYY-MM-DD';
 
-  protected API_URL = 'http://localhost:8080/api/';
+  protected API_URL = 'http://localhost:8000/';
   private headers: HttpHeaders = new HttpHeaders({
     'Accept': 'application/json',
     'Cache-Control': 'no-cache',
